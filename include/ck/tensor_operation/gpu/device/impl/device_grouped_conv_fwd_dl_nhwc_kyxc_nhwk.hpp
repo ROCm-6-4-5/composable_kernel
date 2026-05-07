@@ -106,8 +106,9 @@ __global__ void
             const Block2CTileMap block_2_ctile_map,
             const ComputePtrOffsetOfBatch compute_ptr_offset_of_batch)
 {
-#if(!defined(__HIP_DEVICE_COMPILE__) || defined(__gfx906__) || defined(__gfx1030__) || \
-    defined(__gfx1100__) || defined(__gfx1101__) || defined(__gfx1102__))
+#if(!defined(__HIP_DEVICE_COMPILE__) || defined(__gfx906__) || defined(__gfx1010__) || \
+    defined(__gfx1011__) || defined(__gfx1012__) || defined(__gfx1030__) || defined(__gfx1100__) || \
+    defined(__gfx1101__) || defined(__gfx1102__))
     // offset base pointer for each work-group
     const index_t num_blocks_per_batch =
         __builtin_amdgcn_readfirstlane(get_grid_size() / batch_count);
@@ -601,9 +602,10 @@ struct DeviceGroupedConvFwdDl_NHWC_KYXC_NHWK : public DeviceGroupedConvFwd<NDimS
         namespace ctc = tensor_layout::convolution;
 
         // check device
-        if(!(ck::get_device_name() == "gfx906" || ck::get_device_name() == "gfx1030" ||
-             ck::get_device_name() == "gfx1100" || ck::get_device_name() == "gfx1101" ||
-             ck::get_device_name() == "gfx1102"))
+        if(!(ck::get_device_name() == "gfx906" || ck::get_device_name() == "gfx1010" ||
+             ck::get_device_name() == "gfx1011" || ck::get_device_name() == "gfx1012" ||
+             ck::get_device_name() == "gfx1030" || ck::get_device_name() == "gfx1100" ||
+             ck::get_device_name() == "gfx1101" || ck::get_device_name() == "gfx1102"))
         {
             return false;
         }

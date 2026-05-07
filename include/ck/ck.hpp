@@ -49,7 +49,8 @@
     defined(__gfx90a__) || defined(__gfx940__) || defined(__gfx941__) ||                          \
     defined(__gfx942__) // for GPU code
 #define CK_BUFFER_RESOURCE_3RD_DWORD 0x00020000
-#elif defined(__gfx1030__) || defined(__gfx1032__) // for GPU code
+#elif defined(__gfx1010__) || defined(__gfx1011__) || defined(__gfx1012__) || defined(__gfx1030__) || \
+    defined(__gfx1032__) // for GPU code
 #define CK_BUFFER_RESOURCE_3RD_DWORD 0x31014000
 #elif defined(__gfx1100__) || defined(__gfx1101__) || defined(__gfx1102__) // for GPU code
 #define CK_BUFFER_RESOURCE_3RD_DWORD 0x31004000
@@ -57,10 +58,11 @@
 
 // FMA instruction
 #ifndef __HIP_DEVICE_COMPILE__                   // for host code, define nothing
-#elif defined(__gfx803__) || defined(__gfx900__) // for GPU code
+#elif defined(__gfx803__) || defined(__gfx900__) || defined(__gfx1010__) // for GPU code
 #define CK_USE_AMD_V_MAC_F32
 #elif defined(__gfx906__) || defined(__gfx908__) || defined(__gfx90a__) || defined(__gfx1030__) || \
-    defined(__gfx940__) || defined(__gfx941__) || defined(__gfx942__) // for GPU code
+    defined(__gfx940__) || defined(__gfx941__) || defined(__gfx942__) || defined(__gfx1011__) || \
+    defined(__gfx1012__) // for GPU code
 #define CK_USE_AMD_V_FMAC_F32
 #define CK_USE_AMD_V_DOT2_F32_F16
 #define CK_USE_AMD_V_DOT4_I32_I8

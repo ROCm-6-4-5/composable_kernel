@@ -40,8 +40,9 @@ __global__ void
                                           const CDEElementwiseOperation cde_element_op)
 {
 #if(!defined(__HIP_DEVICE_COMPILE__) || defined(__gfx906__) || defined(__gfx908__) ||              \
-    defined(__gfx90a__) || defined(__gfx1030__) || defined(__gfx1100__) || defined(__gfx1101__) || \
-    defined(__gfx1102__) || defined(__gfx940__) || defined(__gfx941__) || defined(__gfx942__))
+    defined(__gfx90a__) || defined(__gfx1010__) || defined(__gfx1011__) || defined(__gfx1012__) || \
+    defined(__gfx1030__) || defined(__gfx1100__) || defined(__gfx1101__) || defined(__gfx1102__) || \
+    defined(__gfx940__) || defined(__gfx941__) || defined(__gfx942__))
     __shared__ char p_shared[GridwiseGemm::GetSharedMemoryNumberOfByte()];
 
     const index_t block_id = get_block_1d_id();
@@ -672,6 +673,7 @@ struct DeviceGroupedGemmMultipleD_Dl : public DeviceGroupedGemm<ALayout,
 
         //  TODO add newer Navi arch
         if(device_name != "gfx906" and device_name != "gfx908" and device_name != "gfx90a" and
+           device_name != "gfx1010" and device_name != "gfx1011" and device_name != "gfx1012" and
            device_name != "gfx1030")
         {
             return false;
